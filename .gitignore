@@ -8,3 +8,6 @@ crash.log
 
 # For built boxes
 *.box
+
+# pycache
+denoise_image/config/__pycache__/
