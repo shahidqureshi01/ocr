@@ -50,7 +50,7 @@ for(i, train_paths, cleaned_paths) in enumerate(image_paths):
       features = train_region.flatten()
       target = clean_region[2, 2]
 
-      # only write a some feature/target combination to disk
+      # only write some of feature/target combination to disk
       if random.random() <= config.SAMPLE_PROB:
         features = [str(x) for x in features]
         row = [str(target)] + features
