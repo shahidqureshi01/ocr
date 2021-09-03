@@ -3,7 +3,7 @@ import cv2
 
 def blur_and_threshold(image, eps=1e-7):
     # blur the image using a median blur
-    blur = cv2.medianBlur(image, (5, 5), 0)
+    blur = cv2.medianBlur(image, 5)
     foreground = image.astype('float') - blur
     foreground[foreground > 0] = 0
     
