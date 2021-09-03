@@ -1,19 +1,21 @@
-from config import denoise_image_config as config
+from config.denoise_image_config import * 
 from pyimagesearch.denoising.helper import blur_and_threshold
 from imutils import paths
 import progressbar
 import cv2
 import random
+import sys
 
 
-train_paths = sorted(list(paths.list_images(config.TRAIN_PATH)))
-cleaned_paths = sorted(list(paths.list_images(config.CLEANED_PATH)))
+train_paths = sorted(list(paths.list_images(TRAIN_PATH)))
+cleaned_paths = sorted(list(paths.list_images(CLEANED_PATH)))
+print(train_paths, cleaned_paths)
 
 widgets  = ["Creating Features: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
 pbar = progressbar.ProgressBar(maxval=len(train_paths), widgets=widgets).start()
 
 image_paths = zip(train_paths, cleaned_paths)
-csv = open(config.FEATURES_PATH, 'w')
+csv = open(FEATURES_PATH, 'w')
 
 for(i, train_paths, cleaned_paths) in enumerate(image_paths):
   # read images
@@ -51,7 +53,7 @@ for(i, train_paths, cleaned_paths) in enumerate(image_paths):
       target = clean_region[2, 2]
 
       # only write some of feature/target combination to disk
-      if random.random() <= config.SAMPLE_PROB:
+      if random.random() <= SAMPLE_PROB:
         features = [str(x) for x in features]
         row = [str(target)] + features
         row = ', '.join(row)
