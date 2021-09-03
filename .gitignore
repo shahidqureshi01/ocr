@@ -10,4 +10,4 @@ crash.log
 *.box
 
 # pycache
-denoise_image/config/__pycache__/
+__pycache__/
