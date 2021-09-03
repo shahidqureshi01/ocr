@@ -1,10 +1,12 @@
 import os
 
-BASE_PATH = 'dirty-documents'
+cwdir = os.getcwd()
+
+BASE_PATH = 'denoise_image/dirty-documents'
 
 TRAIN_PATH = os.path.sep.join([BASE_PATH, 'train'])
 
-CLEANED_PATH = os.path.sep.join([BASE_PATH, 'clean'])
+CLEANED_PATH = os.path.sep.join([BASE_PATH, 'train_cleaned'])
 
 FEATURES_PATH = 'features.csv'
 
