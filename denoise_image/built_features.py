@@ -1,23 +1,24 @@
-from config.denoise_image_config import * 
+from numpy.matrixlib.defmatrix import _convert_from_string
+from config  import denoise_image_config as config
 from pyimagesearch.denoising.helper import blur_and_threshold
 from imutils import paths
+from imutils.paths import list_images
 import progressbar
 import cv2
 import random
 import sys
+import os
 
-
-train_paths = sorted(list(paths.list_images(TRAIN_PATH)))
-cleaned_paths = sorted(list(paths.list_images(CLEANED_PATH)))
-print(train_paths, cleaned_paths)
+train_paths = sorted(list(paths.list_images(config.TRAIN_PATH)))
+cleaned_paths = sorted(list(paths.list_images(config.CLEANED_PATH)))
 
 widgets  = ["Creating Features: ", progressbar.Percentage(), " ", progressbar.Bar(), " ", progressbar.ETA()]
 pbar = progressbar.ProgressBar(maxval=len(train_paths), widgets=widgets).start()
 
 image_paths = zip(train_paths, cleaned_paths)
-csv = open(FEATURES_PATH, 'w')
+csv = open(config.FEATURES_PATH, 'w')
 
-for(i, train_paths, cleaned_paths) in enumerate(image_paths):
+for(i, (train_paths, cleaned_paths)) in enumerate(image_paths):
   # read images
   train_image = cv2.imread(train_paths)
   clean_image = cv2.imread(cleaned_paths)
@@ -27,8 +28,8 @@ for(i, train_paths, cleaned_paths) in enumerate(image_paths):
   clean_image = cv2.cvtColor(clean_image, cv2.COLOR_BGR2GRAY)
 
   # padding 2px each side for both train and clean images
-  train_image = cv2.copyMakerBorder(train_image, 2, 2, 2, 2, cv2.BORDER_REPLICATE)
-  clean_image = cv2.copyMakerBorder(train_image, 2, 2, 2, 2, cv2.BORDER_REPLICATE)
+  train_image = cv2.copyMakeBorder(train_image, 2, 2, 2, 2, cv2.BORDER_REPLICATE)
+  clean_image = cv2.copyMakeBorder(train_image, 2, 2, 2, 2, cv2.BORDER_REPLICATE)
 
   # blur the train image
   train_image = blur_and_threshold(train_image)
@@ -53,7 +54,7 @@ for(i, train_paths, cleaned_paths) in enumerate(image_paths):
       target = clean_region[2, 2]
 
       # only write some of feature/target combination to disk
-      if random.random() <= SAMPLE_PROB:
+      if random.random() <= config.SAMPLE_PROB:
         features = [str(x) for x in features]
         row = [str(target)] + features
         row = ', '.join(row)
