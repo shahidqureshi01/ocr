@@ -33,7 +33,7 @@ for row in open(config.FEATURES_PATH):
 
     # evaulate model
     pred = model.predict(features_test)
-    mse = mean_squared_error(pred, targets_test)
+    mse = np.sqrt(mean_squared_error(pred, targets_test))
     print('mse: {}'.format(mse))
 
     # save model
