@@ -45,4 +45,18 @@ for image_path in image_paths:
       features = region.flatten()
       region_features.append(features)
 
+# predict the image
+pixels = model.predict(region_features)
+
+# reshape the image as per original image size
+pixels = pixels.reshape(copy.shape)
+# change values between 0 and 255
+output = (pixels * 255).astype("uint8")
+
+# show original image and output image
+cv2.imshow("Original", copy)
+cv2.imshow("Output", output)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
 
