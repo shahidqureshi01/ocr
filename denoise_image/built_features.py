@@ -19,7 +19,7 @@ for(i, (train_paths, cleaned_paths)) in enumerate(image_paths):
   train_image = cv2.imread(train_paths)
   clean_image = cv2.imread(cleaned_paths)
 
-  #brg to gray
+  # BRG to gray
   train_image = cv2.cvtColor(train_image, cv2.COLOR_BGR2GRAY)
   clean_image = cv2.cvtColor(clean_image, cv2.COLOR_BGR2GRAY)
 
@@ -30,7 +30,7 @@ for(i, (train_paths, cleaned_paths)) in enumerate(image_paths):
   # blur the train image
   train_image = blur_and_threshold(train_image)
 
-  # scale to px intensity to 0-1 from 0-255
+  # scale to px intensity between 0-1 from 0-255
   clean_image = clean_image.astype('float') / 255.0
 
   # 5x5 sliding window throgh images
