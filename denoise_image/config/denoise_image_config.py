@@ -1,7 +1,5 @@
 import os
 
-cwdir = os.getcwd()
-
 BASE_PATH = 'denoise_image/dirty-documents'
 
 TRAIN_PATH = os.path.sep.join([BASE_PATH, 'train'])
