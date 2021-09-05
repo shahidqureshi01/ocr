@@ -33,7 +33,7 @@ features_train, features_test, targets_train, targets_test = train_test_split(fe
 
 # tranin model
 print('training model...')
-model = RandomForestRegressor(n_estimators=10, random_state=44)
+model = RandomForestRegressor(n_estimators=100, random_state=44)
 model.fit(features_train, targets_train)
 
 # evaulate model
