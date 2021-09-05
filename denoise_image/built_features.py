@@ -1,13 +1,9 @@
-from numpy.matrixlib.defmatrix import _convert_from_string
 from config  import denoise_image_config as config
 from pyimagesearch.denoising.helper import blur_and_threshold
 from imutils import paths
-from imutils.paths import list_images
 import progressbar
 import cv2
 import random
-import sys
-import os
 
 train_paths = sorted(list(paths.list_images(config.TRAIN_PATH)))
 cleaned_paths = sorted(list(paths.list_images(config.CLEANED_PATH)))
