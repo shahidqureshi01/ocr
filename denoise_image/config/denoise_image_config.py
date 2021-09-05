@@ -10,4 +10,4 @@ FEATURES_PATH = 'features.csv'
 
 SAMPLE_PROB = 0.02
 
-MODEL_PATH = 'model.pkl'
+MODEL_PATH = 'model.pickle'
