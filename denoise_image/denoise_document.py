@@ -23,3 +23,26 @@ for image_path in image_paths:
   image = cv2.imread(image_path)
   image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
   copy = image.copy()
+
+  # adding padding 2 pixels to each side
+  image = cv2.copyMakeBorder(image, 2, 2, 2, 2, cv2.BORDER_REPLICATE) 
+  image = blur_and_threshold(image)
+
+  # region feature extraction
+  region_features = []
+
+  for y in range(0, image.shape[0]):
+    for x in range(0, image.shape[1]):
+      # extract the region 
+      region = image[y:y+5, x:x+5]
+      (rH, rW) = region.shape[:2]
+
+      # continue if region is not 5x5
+      if rW != 5 or rH != 5:
+        continue
+
+      # flatten the region values
+      features = region.flatten()
+      region_features.append(features)
+
+
