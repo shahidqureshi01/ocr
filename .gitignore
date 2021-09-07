@@ -14,3 +14,12 @@ __pycache__/
 
 # data images
 denoise_image/dirty-documents/
+
+# detrack features.csv
+features.csv
+
+# model
+model.pickle
+
+# cleaned image
+output.png
