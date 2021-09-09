@@ -19,7 +19,7 @@ model = pickle.loads(open(config.MODEL_PATH, "rb").read())
 # image_path = image_paths[:int(args["sample"])]
 image_paths = list(paths.list_images('denoise_image/dirty-documents/test'))
 
-img_path = 'denoise_image/dirty-documents/test/55.png'
+img_path = 'denoise_image/dirty-documents/test/49.png'
 img = cv2.imread(img_path)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 copy = img.copy()
@@ -52,7 +52,7 @@ pixels = pixels.reshape(copy.shape)
 # change values between 0 and 255
 output = (pixels * 255).astype("uint8")
 
-cv2.imwrite('55.png', output)
+cv2.imwrite('49.png', output)
 
 
 
