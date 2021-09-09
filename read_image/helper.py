@@ -49,3 +49,12 @@ def decode_predictions(scores, geometry, min_score=0.5):
 
       top_left = ((-sin * h) + offset[0], (-cos * h) + offset[1])
       top_right = ((-cos * w) + offset[0], (sin * w) + offset[1])
+
+      c_x = 0.5 * (top_left[0] + top_right[0])
+      c_y = 0.5 * (top_left[1] + top_right[1])
+
+      box = ((c_x, c_y), (w, h), -1 * angle * 180.0 / np.pi)
+
+      rects.append(box)
+      confidences.append(scores_data[x])
+  return (rects, confidences)
