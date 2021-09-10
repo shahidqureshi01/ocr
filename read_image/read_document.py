@@ -13,3 +13,8 @@ thresh = 0.5
 img = cv2.imread(img_path)
 (original_height, original_width) = img.shape[:2]
 
+rW = original_width /float(width)
+rH = original_height /float(height)
+
+
+
