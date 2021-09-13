@@ -4,12 +4,12 @@ import numpy as np
 import cv2
 import time
 
-img_path = ''
+img_path = 'read_image/models//frozen_east_text_detection.pb'
 model = ''
-height = 0
-width = 0
-conf_score = 0
-thresh = 0.5
+height = 320
+width = 320
+conf_score = 0.5
+thresh = 0.4
 
 img = cv2.imread(img_path)
 (original_height, original_width) = img.shape[:2]
