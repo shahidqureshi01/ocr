@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import time
 
-img_path = 'read_image/models//frozen_east_text_detection.pb'
+img_path = 'read_image/models/frozen_east_text_detection.pb'
 model = ''
 height = 320
 width = 320
