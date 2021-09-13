@@ -29,3 +29,5 @@ end = time.time()
 
 print('EAST took {:.6f} seconds'.format(end - start))
 
+(rect, confidences) = decode_predictions(scores, geometry)
+idx = cv2.dnn.NMSBoxes(rect, confidences, conf_score, thresh)
