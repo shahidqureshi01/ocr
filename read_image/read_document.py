@@ -49,7 +49,20 @@ if len(idx) > 0:
         box= np.int0(box)
 
         # draw the bounding box on the image
-        cv2.polylines(img, [box], True, (0,255,0), 3)
+        #cv2.polylines(img, [box], True, (0,255,0), 3)
+        # convert rotated box to normal box
+        (x, y, w, h) = cv2.boundingRect(box)
+        # compute the deltas for padding
+        dX = int((w * padding))
+        dY = int((h * padding))
+
+        # apply padding to each side of the bounding box, respectively
+        start_X = max(0, x - dX)
+        start_y = max(0, y - dY)
+        end_x = min(original_width, x + w(dX * 2))
+        end_y = min(original_height, y + h(dY * 2))
+        padded_region = img[start_y:end_y, start_X:end_x]
+
 
 cv2.imshow("Image", img)
 cv2.waitKey(0)
