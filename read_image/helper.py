@@ -24,9 +24,10 @@ def decode_predictions(scores, geometry, min_score=0.5):
 
     # loop over the number of columns
     for x in range(0, num_cols):
+      score = float(scores_data[x])
       # if our score does not have sufficient probability,
       # ignore it
-      if scores_data[x] < min_score:
+      if score < min_score:
         continue
 
       # compute the offset factor as our resulting feature
@@ -57,5 +58,5 @@ def decode_predictions(scores, geometry, min_score=0.5):
       box = ((c_x, c_y), (w, h), -1 * angle * 180.0 / np.pi)
 
       rects.append(box)
-      confidences.append(scores_data[x])
+      confidences.append(score)
   return (rects, confidences)
