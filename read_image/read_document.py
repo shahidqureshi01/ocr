@@ -4,6 +4,7 @@ import numpy as np
 import cv2
 import time
 
+
 img_path = '49.png'
 model = 'read_image/models/frozen_east_text_detection.pb'
 height = 320
@@ -21,9 +22,7 @@ rH = original_height /float(height)
 print('loading EAST....')
 
 net = cv2.dnn.readNet(model)
-print('mode is {}'.format(net))
 blob = cv2.dnn.blobFromImage(img, 1.0, (height, width), (123.68, 116.78, 103.94), swapRB=True, crop=False)
-print('the type of the blob is {}'.format(blob.shape))
 start = time.time()
 net.setInput(blob)
 (scores, geometry) = net.forward(OUTPUT_LAYERS)
