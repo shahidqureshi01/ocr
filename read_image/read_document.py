@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import time
 
-img_path = 'sample_text.png'
+img_path = '49.png'
 model = 'read_image/models/frozen_east_text_detection.pb'
 height = 320
 width = 320
@@ -12,6 +12,7 @@ conf_score = 0.5
 thresh = 0.4
 
 img = cv2.imread(img_path)
+
 (original_height, original_width) = img.shape[:2]
 
 rW = original_width /float(width)
@@ -19,9 +20,10 @@ rH = original_height /float(height)
 
 print('loading EAST....')
 
-net = cv2.dnn.readNet('EAST')
-
-blob = cv2.dnn.blobFromImage(img, 1.0, (width, height), (123.68, 116.78, 103.94), swapRB=True, crop=False)
+net = cv2.dnn.readNet(model)
+print('mode is {}'.format(net))
+blob = cv2.dnn.blobFromImage(img, 1.0, (height, width), (123.68, 116.78, 103.94), swapRB=True, crop=False)
+print('the type of the blob is {}'.format(blob.shape))
 start = time.time()
 net.setInput(blob)
 (scores, geometry) = net.forward(OUTPUT_LAYERS)
@@ -31,7 +33,9 @@ print('EAST took {:.6f} seconds'.format(end - start))
 
 # decode the predictions, then  apply non-maxima suppression to suppress weak, overlapping bounding boxes
 (rect, confidences) = decode_predictions(scores, geometry)
-idx = cv2.dnn.NMSBoxes(rect, confidences, conf_score, thresh)
+print('rect is {}'.format(rect))
+#print('confidences is {}'.format(confidences))
+idx = cv2.dnn.NMSBoxesRotated(rect, confidences, conf_score, thresh)
 
 if len(idx) > 0:
     # loop over the indexes we are keeping
