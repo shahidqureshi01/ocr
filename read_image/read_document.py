@@ -59,9 +59,14 @@ if len(idx) > 0:
         # apply padding to each side of the bounding box, respectively
         start_X = max(0, x - dX)
         start_y = max(0, y - dY)
-        end_x = min(original_width, x + w(dX * 2))
-        end_y = min(original_height, y + h(dY * 2))
+        end_x = min(original_width, x + w + (dX * 2))
+        end_y = min(original_height, y + h + (dY * 2))
         padded_region = img[start_y:end_y, start_X:end_x]
+
+        # apply OCR to the padded region
+        options = '--psm 7'
+        text = pytesseract.image_to_string(padded_region, config=options)
+        print('text is {}'.format(text))
 
 
 cv2.imshow("Image", img)
