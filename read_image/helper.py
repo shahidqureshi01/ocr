@@ -2,6 +2,9 @@ import numpy as np
 #OUTPUT_LAYERS = ['feature_fusion/conv_7/sigmoid', 'feature_fusion/concat_3']
 OUTPUT_LAYERS = ["feature_fusion/Conv_7/Sigmoid","feature_fusion/concat_3"]
 
+def cleanup_text(text):
+  return "".join([c if ord(c) < 128 else "" for c in text]).strip()
+
 def decode_predictions(scores, geometry, min_score=0.5):
   # grab row and columns  from scores
   num_rows = scores.shape[2]
