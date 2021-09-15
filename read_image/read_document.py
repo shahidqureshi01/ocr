@@ -11,9 +11,9 @@ height = 320
 width = 320
 conf_score = 0.5
 thresh = 0.4
-padding = 0.0
+padding = 0.1
 sort = 'top-to-bottom'
-
+results = []
 img = cv2.imread(img_path)
 
 (original_height, original_width) = img.shape[:2]
@@ -34,7 +34,6 @@ print('EAST took {:.6f} seconds'.format(end - start))
 
 # decode the predictions, then  apply non-maxima suppression to suppress weak, overlapping bounding boxes
 (rect, confidences) = decode_predictions(scores, geometry)
-print('rect is {}'.format(rect))
 #print('confidences is {}'.format(confidences))
 idx = cv2.dnn.NMSBoxesRotated(rect, confidences, conf_score, thresh)
 
@@ -66,9 +65,14 @@ if len(idx) > 0:
         # apply OCR to the padded region
         options = '--psm 7'
         text = pytesseract.image_to_string(padded_region, config=options)
-        print('text is {}'.format(text))
-
-
+        #print('text is {}'.format(text))
+        results.append((box, text))
+        
+results = sorted(results, key=lambda y: y[0][0][1])
+for (box, text) in results:
+    print('text is {}'.format(text))
+    cv2.polylines(img, [box], True, (0,255,0), 3)
+    cv2.putText(img, text, (box[0][0], box[0][1]), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,255,0), 2)
 cv2.imshow("Image", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows(1)
