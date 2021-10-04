@@ -1,5 +1,5 @@
 @use "../custom" as *;
-//@use "../components/mixins" as *;
+@use "../components/mixins" as *;
 
 .menu {
   @include gradient;
