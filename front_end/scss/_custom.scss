@@ -1,6 +1,8 @@
 // import bootstrap
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+$myblue: #02b3e4;
+$blueblack: #2e3d49;
+$footer: #151414;
 
 $white: #fff;
 $gray-100: #f8f9fa;
@@ -14,6 +16,7 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-$blue: #0d6efd !default;
-$primary: $blue !default;
-$secondary: $gray-600 !default;
+$primary: $myblue;
+$secondary: $blueblack;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
