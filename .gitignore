@@ -23,3 +23,7 @@ model.pickle
 
 # cleaned image
 output.png
+
+# node modules
+front_end/node_modules/
+front_end/package-lock.json
