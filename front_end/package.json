@@ -12,5 +12,8 @@
     "EAST"
   ],
   "author": "Shahid Qureshi",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.42.1"
+  }
 }
