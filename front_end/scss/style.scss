@@ -1,1 +1,12 @@
 @use "./custom" as *;
+
+// Import components
+@use "./components/animations";
+@use "./components/buttons";
+@use "./components/mixins";
+@use "./components/typography";
+
+// import sections
+@use "./sections/footer";
+@use "./sections/intro";
+@use "./sections/navbar";
