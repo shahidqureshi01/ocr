@@ -4,7 +4,7 @@
   "description": "front end for OCR",
   "main": "index.js",
   "scripts": {
-    "compile:saas": "saas scss:assets/css"
+    "compile:sass": "sass scss:assets/css"
   },
   "keywords": [
     "saas",
