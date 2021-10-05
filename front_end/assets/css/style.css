@@ -11394,4 +11394,11 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.get-started {
+  padding: 4rem 0;
+  background-color: #e9ecef;
+  margin-top: -8.75rem;
+  margin-bottom: 1rem;
+}
+
 /*# sourceMappingURL=style.css.map */
