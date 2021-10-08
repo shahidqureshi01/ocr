@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="front_end/assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/fontawesome.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -41,9 +41,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">Tech</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tech">Tech</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Overview</a>
+              <a class="nav-link" href="#tech">Overview</a>
             </li>
           </ul>
           <button type="button" class="rounded-pill btn-rounded">
@@ -159,7 +159,7 @@
         </div>
 
         <!-- START THE CTA CONTENT  -->
-        <div class="row text-white">
+        <div id="tech" class="row text-white">
           <div class="col-12 col-lg-6 gradient shadow p-3">
             <div class="cta-info w-100">
               <!--<h4 class="display-4 fw-bold">Tech stack</h4>-->
@@ -167,16 +167,16 @@
                 Technologies being used in this project
               </h3>
               <ul class="cta-info__list">
-                <li>Random forest</li>
-                <li>SciKit learn</li>
-                <li>East</li>
-                <li>Open CV</li>
-                <li>Node</li>
-                <li>Flask</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Bootstrap</li>
-                <li>Sass</li>
+                <li>Random Forest regressor - Clear the image</li>
+                <li>SciKit Learn - Extract features</li>
+                <li>EAST - Detect words</li>
+                <li>OpenCV - image preprocessing</li>
+                <li>NPM - Install Node modules</li>
+                <li>Flask - Spin up the web server</li>
+                <li>HTML - Front end</li>
+                <li>CSS - Styling</li>
+                <li>Bootstrap - Layout</li>
+                <li>Sass - CSS preprocessing</li>
               </ul>
             </div>
           </div>
@@ -188,11 +188,39 @@
               <h3 class="display-3--brief">Overview</h3>
               <p>
                 The main aim of the project is to provide a tool where user
-                would be able to upload an image and the system would predict
-                the image. There are theree parts of the project:
+                would be able to upload an image and the software would predict
+                words contained in the image. There are theree parts of the
+                project:
                 <li>denoise the image using machine learning</li>
                 <li>predict the words in the image via deep learning</li>
                 <li>show the found words to the users</li>
+              </p>
+              <h4>Denoise the image</h4>
+              <p>
+                Documents are often dirty, they could be crumpled, have stains,
+                old or have scan marks. This pose a challege for the computer to
+                envision it. In this part of the project, I used machine
+                learning to denoise the image. I have used two datasets(dirty
+                and clearn version of same image) from Kaggle to extract
+                features and then trained a random forest regressor to denoise
+                the dirty documents.
+              </p>
+              <h4>Predict words with Deep learning</h4>
+              <p>
+                In this componets of my project, I have used OpenCV for
+                preprocessing the image and then used EAST(An efficient and
+                Accurate Scene Text Detector) pre-trained deep learning model to
+                detect the words in the image. I have also taken care of text if
+                it's slightly rotated or slanted.
+              </p>
+              <h4>User interface</h4>
+              <p>
+                User interface is the coponent of the project which string
+                together the denoising and detection componet together along
+                with the user iterface. Users are able to upload an image, which
+                is denoised in turn, and fed into the EAST deep learning model
+                to detect words contained in the image. Once the EAST model is
+                finished with detection, the resulsts are shown to the user.
               </p>
             </div>
           </div>
