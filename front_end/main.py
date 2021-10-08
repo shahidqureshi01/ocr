@@ -12,7 +12,7 @@ def shutdown_server():
 
 app = Flask(__name__, template_folder=template_path)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
   return render_template("index.html")
 
