@@ -26,7 +26,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="images/tldr.jpeg" alt="logo image" />
+          <img
+            src="{{ url_for('static', filename='images/tldr.jpeg')}}"
+            alt="logo image"
+          />
         </a>
         <button
           class="navbar-toggler"
@@ -114,8 +117,8 @@
           <div class="col-md-6 intros text-end">
             <div class="video-box">
               <img
-                src="images/Artificial Intelligence_Flatline.png"
-                alt="video illutration"
+                src="{{ url_for('static', filename='images/Artificial Intelligence_Flatline.png') }}"
+                alt="Artificial Intelligence_Flatline"
                 class="img-fluid"
               />
               <a
