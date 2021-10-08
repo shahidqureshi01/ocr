@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 #from flask import Flask, render_template, session, copy_current_request_context
 import os
 
@@ -14,7 +14,13 @@ app = Flask(__name__, template_folder=template_path)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-  return render_template("index.html")
+	if request.method == 'POST':
+		if request.files:
+			image = request.files['image']
+			print(image)
+			return redirect(request.url)
+
+	return render_template("index.html")
 
 @app.route('/shutdown', methods=['GET'])
 def shutdown():
