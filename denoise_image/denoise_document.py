@@ -39,8 +39,12 @@ pixels = model.predict(region_features)
 pixels = pixels.reshape(copy.shape)
 # change values between 0 and 255
 output = (pixels * 255).astype("uint8")
-
-cv2.imwrite('49.png', output)
+cv2.imshow('original', copy)
+cv2.waitKey(0)
+cv2.imshow('clean', output)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+cv2.imwrite('61.png', output)
 
 
 
