@@ -7,9 +7,7 @@ import cv2
 # load the model
 model = pickle.loads(open(config.MODEL_PATH, "rb").read())
 
-image_paths = list(paths.list_images('denoise_image/dirty-documents/test'))
-
-img_path = 'denoise_image/dirty-documents/test/49.png'
+img_path = 'denoise_image/dirty-documents/test/61.png'
 img = cv2.imread(img_path)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
 copy = img.copy()
