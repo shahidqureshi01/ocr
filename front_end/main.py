@@ -15,6 +15,7 @@ app = Flask(__name__, template_folder=template_path)
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	if request.method == 'POST':
+		print('hello')
 		if request.files:
 			image = request.files['image']
 			print(image)
