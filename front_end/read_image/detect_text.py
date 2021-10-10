@@ -72,7 +72,7 @@ def detect(img_path):
       # apply OCR to the padded region
       options = '--psm 7'
       text = pytesseract.image_to_string(padded_region, config=options)
-      results.append((box, cleanup_text(text)))
+      results.append((box, text))
   res = sorted(results, key=lambda r:r[0][0][1])
   return res
 	
