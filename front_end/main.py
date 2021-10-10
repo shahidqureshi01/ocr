@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import sys
 import os
+import cv2
 import denoise_image.denoise_document as d
 
 uploads_dir = os.path.dirname(os.path.realpath(__file__)) + '/uploads'
@@ -18,10 +19,13 @@ app = Flask(__name__, template_folder=template_path)
 def home():
 	if request.method == 'POST':
 		if request.files:
+  		# get the image
 			image = request.files['image']
-			print(image)
-			print(os.path.join(uploads_dir, image.filename))
+			# save the image
 			image.save(os.path.join(uploads_dir, image.filename))
+			clean = d.denoise(os.path.join(uploads_dir, image.filename))
+			# save the clear image
+			cv2.imwrite('clean.jpg', clean)
 			return redirect(request.url)
 
 	return render_template("index.html")
