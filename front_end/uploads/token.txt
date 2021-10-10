@@ -1,0 +1,66 @@
+fra:0mzDYrHRQnCEM_8TRvxnhg
+fra:Pf3l2hoFTam1EbqMmV_nYQ
+fra:ttziEHXcTxy68ZgWJOOouA
+
+tickets_read, 
+tickets_write, 
+webhooks_manage, 
+webhooks_write, 
+archives_read, 
+archives_write, 
+visitors_read.
+fra:yIZPXjVZQzW_NA7viDcGcA
+
+https://zapier.com/developer/invite/109896/11691bf2ce486dabee8a9872750013f1/
+fra:sN7L2s5_R6WOecAkkj6U-A
+
+
+    Jamshaid Feroz
+
+    Tarique Aziz
+
+    Haroon
+​
+    Nikhil
+
+As you are using messaging mode, the chat_ends webhook will not be triggered, in case that the customer starts a conversation while the license is 
+offline, and then closes it/leaves the website. This is because the actual conversation has not started yet, so when the customer leaves it is not 
+actually finished - we are working on adjusting Zapier integrations for messaging mode, but at the moment the only solution I can suggest is to set
+up additional webhook in Zapier, for "customer queued" event - this one will be triggered in such situations, and it’ll provide you with the 
+following payload:
+{
+"event_type": "visitor_queued",
+"event_unique_id": "xxxxxxxxx",
+"token": "xxxxxxxx",
+"license_id": "xxxxxxx",
+"lc_version": "3",
+"visitor": {
+"id": "xxxxxxxx",
+"name": "Krzysztof",
+"email": "test@test.com",
+"country": "Poland",
+"city": "Wroclaw",
+"language": "en",
+"page_current": "https://website.address.com",
+"timezone": "Europe/Warsaw"
+}
+}
+
+
+Unfortunately, these chats (when agents are not available) trigger the New visitor 
+in the queue. And the survey data is not available for that trigger.
+
+Our team is working on a new version of the integration, that will allow 
+to pass that data. However, we don't have ETA on when it will be added.
+
+At the moment, you will need to export your chats using our API and check
+ all chats that were started when agents weren't available and pass that 
+data to HubSpot (surveys will be included in the exported chats' data).
+
+I will paste the links you will need again.
+
+Here is a link to the documentation and the method you will need:
+https://developers.livechat.com/docs/messaging/agent-chat-api/v3.1/#get-archives
+
+To authorize you will need to create a personal access token following this guide:
+https://developers.livechatinc.com/docs/getting-started/authorization/#personal-access-tokens
