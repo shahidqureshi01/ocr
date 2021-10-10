@@ -26,9 +26,10 @@ def home():
 			image.save(os.path.join(uploads_dir, image.filename))
 			clean = d.denoise(os.path.join(uploads_dir, image.filename))
 			# save the clear image
-			cv2.imwrite('clean.jpg', clean)
+			cv2.imwrite(os.path.join(uploads_dir, 'clean.jpg'), clean)
 			# detect the text
-			dt.detect(os.path.join(uploads_dir, 'clear.jpg'))
+			box_and_text = dt.detect(os.path.join(uploads_dir, 'clean.jpg'))
+			print(box_and_text[1])
 			return redirect(request.url)
 
 	return render_template("index.html")
