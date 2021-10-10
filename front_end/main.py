@@ -3,12 +3,7 @@ import sys
 import os
 import denoise_image.denoise_document as d
 
-# sys.path.append('/Users/shahidqureshi/Desktop/capstone/ocr/denoise_image')
-# print(sys.path)
-# denoise_document = __import__('denoise_document')
-# test = denoise_document.denoise('/Users/shahidqureshi/Desktop/capstone/ocr/49.png')
-# cv2.imshow('test', test)
-
+uploads_dir = os.path.dirname(os.path.realpath(__file__)) + '/uploads'
 template_path = os.path.abspath('./front_end')
 
 def shutdown_server():
@@ -22,11 +17,11 @@ app = Flask(__name__, template_folder=template_path)
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	if request.method == 'POST':
-
 		if request.files:
 			image = request.files['image']
 			print(image)
-			image.save(image.filename,'upload')
+			print(os.path.join(uploads_dir, image.filename))
+			image.save(os.path.join(uploads_dir, image.filename))
 			return redirect(request.url)
 
 	return render_template("index.html")
