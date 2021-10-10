@@ -1,5 +1,13 @@
 from flask import Flask, render_template, request, redirect
+import sys
 import os
+import denoise_image.denoise_document as d
+
+# sys.path.append('/Users/shahidqureshi/Desktop/capstone/ocr/denoise_image')
+# print(sys.path)
+# denoise_document = __import__('denoise_document')
+# test = denoise_document.denoise('/Users/shahidqureshi/Desktop/capstone/ocr/49.png')
+# cv2.imshow('test', test)
 
 template_path = os.path.abspath('./front_end')
 
@@ -18,7 +26,7 @@ def home():
 		if request.files:
 			image = request.files['image']
 			print(image)
-			image.save(image.filename)
+			image.save(image.filename,'upload')
 			return redirect(request.url)
 
 	return render_template("index.html")
