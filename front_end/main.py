@@ -3,6 +3,7 @@ import sys
 import os
 import cv2
 import denoise_image.denoise_document as d
+import read_image.detect_text as dt
 
 uploads_dir = os.path.dirname(os.path.realpath(__file__)) + '/uploads'
 template_path = os.path.abspath('./front_end')
@@ -26,6 +27,8 @@ def home():
 			clean = d.denoise(os.path.join(uploads_dir, image.filename))
 			# save the clear image
 			cv2.imwrite('clean.jpg', clean)
+			# detect the text
+			dt.detect(os.path.join(uploads_dir, 'clear.jpg'))
 			return redirect(request.url)
 
 	return render_template("index.html")
