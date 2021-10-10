@@ -1,7 +1,7 @@
 from operator import index
-from helper import OUTPUT_LAYERS
-from helper import decode_predictions
-from helper import cleanup_text
+from read_image.helper import OUTPUT_LAYERS
+from read_image.helper import decode_predictions
+from read_image.helper import cleanup_text
 import numpy as np
 import cv2
 import time
@@ -72,8 +72,9 @@ def detect(img_path):
       # apply OCR to the padded region
       options = '--psm 7'
       text = pytesseract.image_to_string(padded_region, config=options)
-      results.append((box, text))
-  return sorted(results, key=lambda r:r[0][0][1])
+      results.append((box, cleanup_text(text)))
+  res = sorted(results, key=lambda r:r[0][0][1])
+  return res
 	
 
 
