@@ -26,34 +26,25 @@ def home():
 			image = request.files['image']
 			# save the image
 			image.save(os.path.join(uploads_dir, image.filename))
-			clean = d.denoise(os.path.join(uploads_dir, image.filename))
+			#clean = d.denoise(os.path.join(uploads_dir, image.filename))
 			# save the clear image
-			cv2.imwrite(os.path.join(uploads_dir, 'clean.jpg'), clean)
+			#cv2.imwrite(os.path.join(uploads_dir, 'clean.jpg'), clean)
 			# detect the text
-			results = dt.detect(os.path.join(uploads_dir, 'clean.jpg'))
+			results = dt.detect(os.path.join(uploads_dir, image.filename))
 			results = sorted(results, key=lambda y: y[0][0][1])
 
 			img = cv2.imread(os.path.join(uploads_dir, image.filename))
 
 			for (box, text) in results:
-				
-				cv2.polylines(img, [box], True, (0,255,0), 3)
-				cv2.putText(img, text, (box[0][0], box[0][1]), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,255,0), 2)
-				output = img.copy()
-				cv2.polylines(output, [box], True, (0, 255, 0), 2)
-
 				text = cleanup_text(text)
 				all_text.append(text)
-				
-				(x, y, w, h) = cv2.boundingRect(box)
-				cv2.putText(output, text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
-				cv2.imshow('Text Detection', output)
-				cv2.waitKey(0)
-			cv2.destroyAllWindows(1)
-
+			
+			#print(all_text)
 			return redirect(request.url)
-
-	return render_template("index.html")
+			
+	# convert list to a string		
+	str_text = ' '.join(all_text)
+	return render_template("index.html", data=str_text)
 
 @app.route('/shutdown', methods=['GET'])
 def shutdown():
