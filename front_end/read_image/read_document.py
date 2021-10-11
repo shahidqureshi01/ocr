@@ -107,7 +107,7 @@ for l in list:
 	cv2.imshow('Text Detection', output)
 	cv2.waitKey(0)
 
-cv2.destroyAllWindows(1)
+
 # cv2.imshow("Image", img)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows(1)
