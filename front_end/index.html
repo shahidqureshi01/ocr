@@ -115,7 +115,11 @@
                   id="message"
                   rows="8"
                   class="shadow form-control form-control-lg"
-                ></textarea>
+                >
+                {% if data %}
+                  {{ data }}
+                {% endif %}
+                </textarea>
               </div>
             </div>
           </div>
