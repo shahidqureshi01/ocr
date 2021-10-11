@@ -73,8 +73,21 @@ def detect(img_path):
       options = '--psm 7'
       text = pytesseract.image_to_string(padded_region, config=options)
       results.append((box, text))
-  res = sorted(results, key=lambda r:r[0][0][1])
-  return res
+  
+  # for (box, text) in results:
+  #   cv2.polylines(img, [box], True, (0,255,0), 3)
+  #   cv2.putText(img, text, (box[0][0], box[0][1]), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,255,0), 2)
+  #   output = img.copy()
+  #   cv2.polylines(output, [box], True, (0, 255, 0), 2)
+
+  #   (x, y, w, h) = cv2.boundingRect(box)
+  #   cv2.putText(output, text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
+  #   cv2.imshow('Text Detection', output)
+  #   cv2.waitKey(0)
+  #   cv2.destroyAllWindows()
+  #   cv2.waitKey(1)
+  
+  return results
 	
 
 
