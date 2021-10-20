@@ -5,6 +5,7 @@ import cv2
 import denoise_image.denoise_document as d
 import read_image.detect_text as dt
 from read_image.helper import cleanup_text
+from helper import sort_bboxes
 
 uploads_dir = os.path.dirname(os.path.realpath(__file__)) + '/uploads'
 template_path = os.path.abspath('./front_end')
@@ -32,6 +33,7 @@ def home():
 			# detect the text
 			results = dt.detect(os.path.join(uploads_dir, image.filename))
 			results = sorted(results, key=lambda y: y[0][0][1])
+			results = sort_bboxes(results)
 
 			img = cv2.imread(os.path.join(uploads_dir, image.filename))
 
